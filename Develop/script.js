@@ -72,7 +72,12 @@ var promptedOther = function() {
 var passwordCriteria = {
   length: promptedLength(),
   upperOrLowerCase: promptedUpperOrLower(),
-  other: promptedOther()
+  other: promptedOther(),
+  reset: function() {
+    this.length = "";
+    this.upperOrLowerCase = "";
+    this.promptedOther = "";
+  }
 }
 
 // Check stored values
@@ -81,9 +86,12 @@ console.log(passwordCriteria);
 var generatePassword = function() {
   // Create a password that is passwordCriteria.length characters long
   // If passwordCriteria.upperOrLowerCase is 1 use uppercase, 2 use lowercase, etc.
+
+  var password = "";
+
   // TEST
   for (i = 1; i < passwordCriteria.length; i++) {
-    var password = lowercase[Math.floor(Math.random() * lowercase.length)];
+    password = password + lowercase[Math.floor((Math.random() * lowercase.length) + 1)];
   }
 
   console.log(password);
